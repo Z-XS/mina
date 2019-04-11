@@ -1,0 +1,101 @@
+<!-- <view class='qrcode-ctn' wx:if="{{!hideQRCode}}">
+  <canvas class='canvas' canvas-id='canvas' bindlongtap='save'></canvas>
+  <button bindtap='hideQRCode'>关闭</button>
+</view> -->
+
+<!--show.wxml-->  
+
+<modal hidden="{{hideBackupModal}}" title="备份数据到云端（加密后上传）" 
+       confirm-text="上传" cancel-text="取消"
+       bindcancel="cancelBackup" bindconfirm="confirmBackup">  
+    <input bindinput='passwdInput' type='text'placeholder="请设置备份恢复密码" value='{{passwd}}'/> 
+</modal>
+
+<modal hidden="{{hideRestoreModal}}" title="从云端恢复数据" 
+       confirm-text="恢复" cancel-text="取消"
+       bindcancel="cancelRestore" bindconfirm="confirmRestore"> 
+    <input bindinput='passwdInput' type='text'placeholder="请输入备份恢复密码" value='{{passwd}}'/>  
+</modal>
+
+<view class='ctn'>
+
+<view class='top-btns'>
+  <button class='green-btn' bindtap='addNew'>添加</button>
+  <!-- <button bindtap='fold'>折叠</button> -->
+  <button bindtap='backup'>备份</button>
+  <button bindtap='restore'>恢复</button>
+  <button bindtap='info'>说明</button>
+</view>
+
+<view class='search'>
+  <input bindinput='search' placeholder='模糊搜索'></input>
+</view>
+
+<view wx:if="{{!hideForm}}" class='item form'>
+  <form bindsubmit='saveRecord'>
+    <input style='display: none' name="id" value='{{record.id}}'/>
+    <view class='line'>
+      <view class='left'>应用</view>
+      <view class='right'>
+        <input confirm-type='next' bindconfirm='focusKey' name="app" value='{{record.app}}'/>
+      </view>
+    </view>
+
+    <view class='line'>
+      <view class='left'>账号</view>
+      <view class='right'>
+        <input focus='{{focus.key}}' confirm-type='next' bindconfirm='focusValue' name="key" value='{{record.key}}'/>
+      </view>
+    </view>
+
+    <view class='line'>
+      <view class='left'>密码</view>
+      <view class='right'>
+        <input focus='{{focus.value}}' confirm-type='done' name="value" value='{{record.value}}'/>
+      </view>
+    </view>
+    <view style='text-align: center'>
+      <button class='cancel-btn' bindtap='cancel'>取消</button>
+      <button form-type='submit' class='save-btn'>保存</button>
+    </view>
+  </form>
+</view>
+
+<view wx:for="{{list}}" wx:key="id">
+  <!-- hide[index] 表示搜索的时候是否展示 -->
+  <view class='item list' wx:if="{{!hide[index]}}">
+    <view class='line' bindtap='toggle' data-id='{{item.id}}'>
+      <view class='left'>应用</view>
+      <view class='right'>
+        <text selectable='true'>{{item.app}}</text>
+      </view>
+      <!-- 点击显示右箭头或者下箭头, hideLine[item.id] 表示折叠当前记录 -->
+      <view class='arrow' wx:if="{{!hideLine[item.id]}}" >
+        <image src='../../images/right-arrow.png' mode='aspectFit'></image>
+      </view>
+      <view class='arrow' wx:if="{{hideLine[item.id]}}" >
+        <image src='../../images/down-arrow.png' mode='aspectFit'></image>
+      </view>
+      <!-- 点击显示右箭头或者下箭头 end -->
+    </view>
+    <view class='line' wx:if="{{hideLine[item.id]}}">
+      <view class='left'>账号</view>
+      <view class='right'>
+        <text class='text' bindtap='copy' data-text='{{item.key}}'>{{item.key}}</text>
+      </view>
+    </view>
+    <view class='line' wx:if="{{hideLine[item.id]}}">
+      <view class='left'>密码</view>
+      <view class='right'>
+        <text class='text' bindtap='copy' data-text='{{item.value}}'>{{item.value}}</text>
+      </view>
+    </view>
+    <view class='ops' wx:if="{{hideLine[item.id]}}">
+    <button bindtap='copy' data-text='{{item.key}}\r\n{{item.value}}'>复制</button>
+        <button bindtap='edit' data-id='{{item.id}}'>编辑</button>
+        <button bindtap='remove' data-id='{{item.id}}'>删除</button>
+    </view>
+  </view>
+</view>
+
+</view>

@@ -1,0 +1,21 @@
+<view class='head'>
+<!-- <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> BUTTOMN</button> -->
+<view class='photo'></view>
+<view class='aphorism'><text>通过自己的努力即使知道一半真理，也比人云亦云地知道全部真理要好得多。\n —— 罗曼·罗兰</text></view>
+</view>
+
+<view class='sea'>
+<input bindinput='bindSearch' type='text' placeholder='搜索'>
+  <icon type="search" size="40" />
+</input>
+</view>
+
+<view class='privateContent'>
+  <view class='line' wx:for='{{searchAccount}}' wx:key='{{key}}'>
+    <view class='left'>{{item}}</view>
+    <view class='right'>详情 〉</view>
+  </view>
+  <view class='line'>
+    <button size='mini' type='primary' bindtap='increase'>新增</button>
+  </view>
+</view>

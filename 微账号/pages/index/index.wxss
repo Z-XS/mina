@@ -1,0 +1,44 @@
+.head {
+  height: 380rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8%;
+}
+.photo {
+  width: 100rpx;
+}
+.aphorism {
+  width: 50%;
+  font-size: 30rpx;
+}
+.sea {
+  height: 78rpx;
+  background: #F0EFF4;
+  border: 2rpx solid #CCC;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.sea input {
+  width: 90%;
+  height: 36rpx;
+  background-color: white;
+  border-radius: 8rpx;
+  padding-left: 22rpx;
+}
+.privateContent {
+  margin-left: 5%;
+}
+.line {
+  padding: 0 20rpx 0 0;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 2rpx solid #CCC;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+.line button {
+  margin-left: 0;
+}

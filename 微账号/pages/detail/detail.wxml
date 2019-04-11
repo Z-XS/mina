@@ -1,0 +1,23 @@
+<view class='form'>
+  <text>密码表单</text>
+  <form bindsubmit='saveRecord'>
+    <view class='line'>
+      <view class='left'>名称</view>
+      <view class='right'>
+        <input name='name' value='{{record.name}}'></input>
+      </view>
+    </view>
+    <view class='line'>
+      <view class='left'>密码</view>
+      <view class='right'>
+        <input name='value' type="{{unlock?'text':'password'}}"  value='{{record.value}}'></input>
+      </view>
+        <image bindtap='target' src="{{unlock?'../../images/unlocked.png':'../../images/locked.png'}}"></image>
+    </view>
+    <view class='line'>
+      <button form-type='submit' type='primary'>保存</button>
+      <button bindtap='copyBtn'>复制密码</button>
+      <button type='warn'>删除</button>
+    </view>
+  </form>
+</view>

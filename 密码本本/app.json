@@ -1,0 +1,14 @@
+{
+  "pages":[
+    "pages/list/list",
+    "pages/index/index",
+    "pages/about/about"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "密码本本",
+    "navigationBarTextStyle":"black"
+  },
+  "cloud": true
+}

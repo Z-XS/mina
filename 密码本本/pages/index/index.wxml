@@ -1,0 +1,29 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+
+  <view class='unlock-tip'>
+    <text wx:if="{{firstUse}}">首次使用请设置解锁密码</text>
+    <text wx:if="{{!firstUse}}">请输入解锁密码</text>
+  </view>
+  <form bindsubmit="formSubmit">
+    <view class='content'>
+      <block wx:for="{{4}}" wx:key="item">
+        <input class='iptbox' value="{{passwd.length>=index+1?passwd[index]:''}}" disabled catchtap='Tap'></input>
+      </block>
+      <input name="password" type='number' 
+             class='ipt' 
+             maxlength="{{4}}"
+             focus="{{isFocus}}" 
+             bindinput="passwdInput"
+             value='{{passwd}}'></input>
+    </view> 
+  </form>
+
+</view>
